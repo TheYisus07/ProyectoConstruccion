@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.ControllerEvent">
+   <children>
+      <AnchorPane prefHeight="55.0" prefWidth="850.0" style="-fx-background-color: #000000;">
+         <children>
+            <Label layoutX="29.0" layoutY="14.0" text="SGP-CA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="46.0" layoutY="89.0" prefHeight="611.0" prefWidth="757.0" style="-fx-background-color: #e8e8e8;">
+         <children>
+            <AnchorPane layoutX="24.0" layoutY="74.0" prefHeight="359.0" prefWidth="712.0" style="-fx-background-color: #c9c9c9; -fx-border-color: #ffffff;">
+               <children>
+                  <Label layoutX="33.0" layoutY="34.0" text="Titulo:" />
+                  <Label layoutX="33.0" layoutY="72.0" text="Responsable:" />
+                  <Label layoutX="33.0" layoutY="113.0" text="Tipo:" />
+                  <Label layoutX="33.0" layoutY="152.0" text="Fecha de registro:" />
+                  <Label layoutX="33.0" layoutY="199.0" text="Lugar:" />
+                  <Label layoutX="33.0" layoutY="243.0" text="Fecha de evento:" />
+                  <TextField fx:id="TitleTXT" layoutX="149.0" layoutY="29.0" style="-fx-background-color: #ffffff;" />
+                  <TextField fx:id="PlaceTXT" layoutX="149.0" layoutY="194.0" style="-fx-background-color: #ffffff;" />
+                  <TextField fx:id="ResponsableTXT" layoutX="149.0" layoutY="67.0" style="-fx-background-color: #ffffff;" />
+                  <ComboBox fx:id="TypeComboBox" layoutX="150.0" layoutY="109.0" prefHeight="26.0" prefWidth="150.0" promptText="Selecciona un tipo" />
+                  <DatePicker fx:id="EventDateComboBox" layoutX="150.0" layoutY="238.0" prefHeight="26.0" prefWidth="152.0" />
+                  <DatePicker fx:id="RegistrationDateComboBox1" layoutX="148.0" layoutY="148.0" prefHeight="26.0" prefWidth="152.0" />
+                  <ComboBox fx:id="PrivacyComboBox" layoutX="149.0" layoutY="284.0" prefHeight="26.0" prefWidth="164.0" promptText="selecciona privacidad" />
+                  <Button fx:id="ScheduleButton" layoutX="537.0" layoutY="301.0" mnemonicParsing="false" onAction="#addEventOnAction" prefHeight="33.0" prefWidth="108.0" text="Registrar">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="33.0" layoutY="289.0" text="Privacidad:" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="24.0" layoutY="20.0" text="CALENDARIZACIÓN">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
