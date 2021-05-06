@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author Antonio de Jesús Dominguez García
  */
-public class ControllerEvent implements Initializable {
+public class ControllerScheduleEvent implements Initializable {
     private final EventDAO eventDAO = new EventDAO();
     private final MemberDAO memberDAO = new MemberDAO();
     @FXML
@@ -101,7 +101,6 @@ public class ControllerEvent implements Initializable {
     }
     @FXML
     void getOutOnAction(ActionEvent event) {
-        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("¿Deseas cancelar el registro?");
         alert.setTitle("Salir");
