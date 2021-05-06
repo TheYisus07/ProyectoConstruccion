@@ -28,25 +28,30 @@
                   <Label layoutX="33.0" layoutY="152.0" text="Fecha de registro:" />
                   <Label layoutX="33.0" layoutY="199.0" text="Lugar:" />
                   <Label layoutX="33.0" layoutY="243.0" text="Fecha de evento:" />
-                  <TextField fx:id="TitleTXT" layoutX="149.0" layoutY="29.0" style="-fx-background-color: #ffffff;" />
-                  <TextField fx:id="PlaceTXT" layoutX="149.0" layoutY="194.0" style="-fx-background-color: #ffffff;" />
-                  <TextField fx:id="ResponsableTXT" layoutX="149.0" layoutY="67.0" style="-fx-background-color: #ffffff;" />
-                  <ComboBox fx:id="TypeComboBox" layoutX="150.0" layoutY="109.0" prefHeight="26.0" prefWidth="150.0" promptText="Selecciona un tipo" />
-                  <DatePicker fx:id="EventDateComboBox" layoutX="150.0" layoutY="238.0" prefHeight="26.0" prefWidth="152.0" />
-                  <DatePicker fx:id="RegistrationDateComboBox1" layoutX="148.0" layoutY="148.0" prefHeight="26.0" prefWidth="152.0" />
-                  <ComboBox fx:id="PrivacyComboBox" layoutX="149.0" layoutY="284.0" prefHeight="26.0" prefWidth="164.0" promptText="selecciona privacidad" />
+                  <TextField fx:id="TitleTXT" layoutX="149.0" layoutY="29.0" prefHeight="25.0" prefWidth="354.0" style="-fx-background-color: #ffffff;" />
+                  <TextField fx:id="PlaceTXT" layoutX="149.0" layoutY="194.0" prefHeight="25.0" prefWidth="354.0" style="-fx-background-color: #ffffff;" />
+                  <ComboBox fx:id="TypeComboBox" layoutX="150.0" layoutY="109.0" prefHeight="26.0" prefWidth="354.0" promptText="Selecciona un tipo" />
+                  <DatePicker fx:id="EventDateComboBox" layoutX="150.0" layoutY="238.0" prefHeight="26.0" prefWidth="354.0" />
+                  <DatePicker fx:id="RegistrationDateComboBox1" layoutX="148.0" layoutY="148.0" prefHeight="26.0" prefWidth="354.0" />
+                  <ComboBox fx:id="PrivacyComboBox" layoutX="149.0" layoutY="284.0" prefHeight="26.0" prefWidth="354.0" promptText="selecciona privacidad" />
                   <Button fx:id="ScheduleButton" layoutX="537.0" layoutY="301.0" mnemonicParsing="false" onAction="#addEventOnAction" prefHeight="33.0" prefWidth="108.0" text="Registrar">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                   <Label layoutX="33.0" layoutY="289.0" text="Privacidad:" />
+                  <ComboBox fx:id="ResponsableComboBox" layoutX="150.0" layoutY="68.0" prefHeight="25.0" prefWidth="354.0" />
                </children>
             </AnchorPane>
             <Label layoutX="24.0" layoutY="20.0" text="CALENDARIZACIÓN">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font></Label>
+            <Button fx:id="ExitScheduleButton" layoutX="41.0" layoutY="489.0" mnemonicParsing="false" onAction="#getOutOnAction" prefHeight="33.0" prefWidth="108.0" text="Salir">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
