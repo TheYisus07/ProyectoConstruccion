@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,7 +21,17 @@
       </AnchorPane>
       <AnchorPane layoutX="46.0" layoutY="89.0" prefHeight="611.0" prefWidth="757.0" style="-fx-background-color: #e8e8e8;">
          <children>
-            <AnchorPane layoutX="114.0" layoutY="94.0" prefHeight="517.0" prefWidth="596.0" style="-fx-background-color: #c9c9c9; -fx-border-color: #ffffff;" />
+            <AnchorPane layoutX="114.0" layoutY="94.0" prefHeight="517.0" prefWidth="596.0" style="-fx-background-color: #c9c9c9; -fx-border-color: #ffffff;">
+               <children>
+                  <TableView fx:id="tableViewEvents" layoutX="26.0" layoutY="64.0" prefHeight="453.0" prefWidth="545.0">
+                    <columns>
+                      <TableColumn fx:id="tableColumnEventTypes" prefWidth="109.0" text="Tipo" />
+                      <TableColumn fx:id="tableColumnEventTitles" prefWidth="336.0" text="Tema" />
+                        <TableColumn fx:id="tableColumnEventDates" minWidth="0.0" prefWidth="99.0" text="Fecha" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
             <Button fx:id="ExitEventHistoryButton" layoutX="6.0" layoutY="547.0" mnemonicParsing="false" onAction="#getOutOfEventHistory" prefHeight="37.0" prefWidth="103.0" text="SALIR" />
             <Button fx:id="ScheduleEventButton" layoutX="608.0" layoutY="27.0" mnemonicParsing="false" onAction="#OpenScheduleEventGUI" prefHeight="37.0" prefWidth="135.0" text="AGENDAR EVENTO" />
             <Label layoutX="24.0" layoutY="20.0" text="HISTORIAL DE EVENTOS">

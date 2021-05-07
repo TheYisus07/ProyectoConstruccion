@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,47 +59,56 @@ public class ControllerScheduleEvent implements Initializable {
     }
     @FXML
     public void addEventOnAction(ActionEvent event) throws ParseException {
-        
-        String title = this.TitleTXT.getText();
-        String textResponsableComboBox = ResponsableComboBox.getSelectionModel().getSelectedItem();
-        String responsable;
-        responsable = textResponsableComboBox;
-        String place = this.PlaceTXT.getText();
-        int registrationDay = RegistrationDateComboBox1.getValue().getDayOfMonth();
-        int registrationMonth = RegistrationDateComboBox1.getValue().getMonthValue();
-        int registrationYear = RegistrationDateComboBox1.getValue().getYear();
-        Date registrationDate  = new Date((registrationYear-1900), (registrationMonth-1), registrationDay);
-        int eventDay = EventDateComboBox.getValue().getDayOfMonth();
-        int eventMonth = EventDateComboBox.getValue().getMonthValue();
-        int eventYear = EventDateComboBox.getValue().getYear();
-        Date eventDate  = new Date((eventYear-1900), (eventMonth-1), eventDay);
-        String textTypeComboBox = TypeComboBox.getSelectionModel().getSelectedItem();
-        String type;
-        type = textTypeComboBox;
-        String textPrivacyComboBox = PrivacyComboBox.getSelectionModel().getSelectedItem();
-        String privacy;
-        privacy = textPrivacyComboBox;
-        Event eventObject = new Event(title, type, registrationDate, place, eventDate, privacy, responsable);
-        EventDAO eventAUX = new EventDAO();
-        Event eventConsult;
-        eventConsult = eventAUX.consultEvent(title);        
-        String titleEventConsulted;
-        titleEventConsulted = eventConsult.getTittle();
-        if(!title.equals(titleEventConsulted)){
-            this.eventList.add(eventObject);
-            eventDAO.scheduleEvent(eventObject);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("El Evento ha sido guardado exitosamente");
-            alert.setTitle("Confirmacion");
-            alert.setContentText(null);
-            alert.showAndWait();
+        try{
+            String title = this.TitleTXT.getText();
+            String textResponsableComboBox = ResponsableComboBox.getSelectionModel().getSelectedItem();
+            String responsable;
+            responsable = textResponsableComboBox;
+            String place = this.PlaceTXT.getText();
+            int registrationDay = RegistrationDateComboBox1.getValue().getDayOfMonth();
+            int registrationMonth = RegistrationDateComboBox1.getValue().getMonthValue();
+            int registrationYear = RegistrationDateComboBox1.getValue().getYear();
+            Date registrationDate  = new Date((registrationYear-1900), (registrationMonth-1), registrationDay);
+            int eventDay = EventDateComboBox.getValue().getDayOfMonth();
+            int eventMonth = EventDateComboBox.getValue().getMonthValue();
+            int eventYear = EventDateComboBox.getValue().getYear();
+            Date eventDate  = new Date((eventYear-1900), (eventMonth-1), eventDay);
+            String textTypeComboBox = TypeComboBox.getSelectionModel().getSelectedItem();
+            String type;
+            type = textTypeComboBox;
+            String textPrivacyComboBox = PrivacyComboBox.getSelectionModel().getSelectedItem();
+            String privacy;
+            privacy = textPrivacyComboBox;
+            Event eventObject = new Event(title, type, registrationDate, place, eventDate, privacy, responsable);
+            EventDAO eventAUX = new EventDAO();
+            Event eventConsult;
+            eventConsult = eventAUX.consultEvent(title);        
+            String titleEventConsulted;
+            titleEventConsulted = eventConsult.getTittle();
+            if(!title.equals(titleEventConsulted)){
+                this.eventList.add(eventObject);
+                eventDAO.scheduleEvent(eventObject);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("El Evento ha sido guardado exitosamente");
+                alert.setTitle("Confirmacion");
+                alert.setContentText(null);
+                alert.showAndWait();
             }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("El Evento existe");
+                alert.showAndWait();
+            }
+        }catch(NullPointerException nullPointerException){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("El Evento existe");
+            alert.setContentText("Valores nulos, verifique los campos");
             alert.showAndWait();
+            Logger.getLogger(ControllerScheduleEvent.class.getName()).log(Level.SEVERE, null, nullPointerException);
         }
+        
     }
     @FXML
     void getOutOnAction(ActionEvent event) {
