@@ -14,11 +14,8 @@ public class sgpca extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("FXMLEvent.fxml"));
-        
-        Scene scene;
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultEventHistory.fxml"));
+        Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
