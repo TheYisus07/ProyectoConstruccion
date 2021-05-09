@@ -5,8 +5,16 @@
  */
 package sgpca;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+
 import bussinesslogic.ConstancyDAO;
 import domain.Constancy;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -55,6 +63,48 @@ public class ControllerGenerateConstancy implements Initializable {
     private Button GenerateConstancyButton;
     
     ObservableList<Constancy> constancyList;
+    
+   
+    
+
+    void GeneratePDFOnAction() {
+        String recognitionType = RecognitionTypeText.getText();
+        String description = DescriptionText.getText();
+        String InstitutionalMailReceivers = InstitutionalMailReceiversText.getText();
+        String InstitutionalMailValidator = InstitutionalMailValidatorText.getText();
+        String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
+        String regulatoryNote = RegulatoryNoteText.getText();
+        String eventRegistred = "hackaton2021";
+        
+         try{
+            PDDocument documento = new PDDocument();
+            PDPage pagina = new PDPage(PDRectangle.A6);
+            documento.addPage(pagina);
+            try (PDPageContentStream contenido = new PDPageContentStream(documento, pagina)) {
+                contenido.beginText();
+                contenido.setFont(PDType1Font.HELVETICA, 11);
+                contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
+                contenido.showText(recognitionType);
+                contenido.newLineAtOffset(00, -20);
+                contenido.showText(description);
+                contenido.newLineAtOffset(00, -20);
+                contenido.showText(InstitutionalMailReceivers);
+                contenido.newLineAtOffset(00, -20);
+                contenido.showText(InstitutionalMailValidator);
+                contenido.newLineAtOffset(00, -20);
+                contenido.showText(InstitutionalMailRedPient);
+                contenido.newLineAtOffset(00, -20);
+                contenido.showText(regulatoryNote);
+                contenido.newLineAtOffset(00, -20);
+            }
+            documento.save("C:\\Users\\INNOVA TEC\\Documents\\PDFPrueba\\pdfprueba.pdf");
+    
+        }catch(IOException x){
+            System.out.println("Error: "+x.getMessage());
+        } 
+    }
+    
+    
 
     @FXML
     void addConstancyOnAction(ActionEvent event) {
@@ -65,8 +115,10 @@ public class ControllerGenerateConstancy implements Initializable {
         String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
         String regulatoryNote = RegulatoryNoteText.getText();
         String eventRegistred = "hackaton2021";
-        
+        GeneratePDFOnAction();
         Constancy constancyObject = new Constancy(recognitionType, description, InstitutionalMailReceivers, InstitutionalMailValidator, InstitutionalMailRedPient, regulatoryNote, eventRegistred);
+        
+        
         ConstancyDAO constancyAUX = new ConstancyDAO();
         Constancy constancyConsult;
         constancyConsult = constancyAUX.checkConstancy(recognitionType);        
@@ -90,6 +142,7 @@ public class ControllerGenerateConstancy implements Initializable {
         
     }
     
+    @FXML
     void getOutOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("¿Deseas cancelar el registro?");

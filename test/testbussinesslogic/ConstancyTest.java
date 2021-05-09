@@ -45,7 +45,7 @@ public class ConstancyTest {
         
         ConstancyDAO constancy = new ConstancyDAO();
         ArrayList<Constancy> arrayListConstancys;
-        arrayListConstancys = constancy.getAllConstancys();
+        arrayListConstancys = constancy.consultConstancyList();
         
         Assert.assertFalse("Prueba regresa lista de constancias", arrayListConstancys.isEmpty());
         

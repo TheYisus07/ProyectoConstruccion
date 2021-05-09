@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,7 +27,6 @@
             </Label>
             <AnchorPane layoutX="150.0" layoutY="87.0" prefHeight="525.0" prefWidth="583.0" style="-fx-background-color: #c9c9c9; -fx-border-color: #ffffff;">
                <children>
-                  <ScrollBar layoutX="561.0" layoutY="1.0" orientation="VERTICAL" prefHeight="525.0" prefWidth="22.0" />
                   <Label layoutX="38.0" layoutY="27.0" text="Tipo de reconocimiento:" />
                   <Label layoutX="37.0" layoutY="65.0" text="Descripción:" />
                   <Label layoutX="37.0" layoutY="146.0" text="Correo institucional de receptores de constancia:" />
@@ -45,6 +43,7 @@
             </AnchorPane>
             <Button fx:id="ExitGenerateConstancyButton" layoutX="24.0" layoutY="546.0" mnemonicParsing="false" onAction="#getOutOnAction" prefHeight="33.0" prefWidth="102.0" text="Salir" />
             <Button fx:id="GenerateConstancyButton" layoutX="633.0" layoutY="27.0" mnemonicParsing="false" onAction="#addConstancyOnAction" prefHeight="33.0" prefWidth="102.0" text="Generar" />
+            <Button fx:id="GeneratePDFButton" layoutX="512.0" layoutY="31.0" mnemonicParsing="false" onAction="#GeneratePDFOnAction" text="Button" />
          </children>
       </AnchorPane>
    </children>

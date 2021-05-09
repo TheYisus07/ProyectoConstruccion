@@ -21,7 +21,7 @@ public class ConstancyDAO implements IConstancyDAO {
     private final Conection connection = new Conection();
 
     @Override
-    public ArrayList<Constancy> getAllConstancys() {
+    public ArrayList<Constancy> consultConstancyList() {
         ArrayList<Constancy> arrayListConstancys = new ArrayList<>();
         
         try {

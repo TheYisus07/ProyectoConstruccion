@@ -3,6 +3,7 @@ package sgpca;
 import bussinesslogic.EventDAO;
 import bussinesslogic.MemberDAO;
 import domain.Event;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
@@ -15,6 +16,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -49,6 +54,20 @@ public class ControllerScheduleEvent implements Initializable {
     @FXML
     private Button ExitScheduleButton;
     ObservableList<Event> eventList;
+    
+    public void closeWindow(ActionEvent event){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultEventHistory.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void fillComboBoxWithMember(){
         ObservableList<String> responsableList = FXCollections.observableArrayList();
         ResponsableComboBox.setItems(responsableList);
@@ -93,6 +112,7 @@ public class ControllerScheduleEvent implements Initializable {
                 alert.setTitle("Confirmacion");
                 alert.setContentText(null);
                 alert.showAndWait();
+                closeWindow(event);
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -118,8 +138,7 @@ public class ControllerScheduleEvent implements Initializable {
         alert.setContentText("El evento no se registrará");
         Optional<ButtonType> okCancel = alert.showAndWait();
         if (okCancel.get() == ButtonType.OK){
-            Stage stage = (Stage) ExitScheduleButton.getScene().getWindow();
-            stage.close();
+            closeWindow(event);
         }
     }
     /**
