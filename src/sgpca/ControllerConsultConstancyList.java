@@ -32,7 +32,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author INNOVA TEC
+ * @author Antonio de Jesús Dominguez García
  */
 public class ControllerConsultConstancyList implements Initializable {
     private final ConstancyDAO constancyDAO = new ConstancyDAO();

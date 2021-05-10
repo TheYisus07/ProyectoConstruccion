@@ -5,6 +5,7 @@ import bussinesslogic.EventDAO;
 import domain.Event;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author INNOVA TEC
+ * @author Antonio de Jesús Dominguez García
  */
 public class ControllerConsultEventHistory implements Initializable {
     private final EventDAO eventDAO = new EventDAO();

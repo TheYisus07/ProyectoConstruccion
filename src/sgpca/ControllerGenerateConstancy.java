@@ -10,8 +10,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-
-
 import bussinesslogic.ConstancyDAO;
 import domain.Constancy;
 import java.io.IOException;
@@ -39,7 +37,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author INNOVA TEC
+ * @author Antonio de Jesús Dominguez García
  */
 public class ControllerGenerateConstancy implements Initializable {
     private final ConstancyDAO constancyDAO = new ConstancyDAO();
@@ -83,8 +81,8 @@ public class ControllerGenerateConstancy implements Initializable {
         }
     }
     
-
-    void GeneratePDFOnAction() {
+   @FXML
+    void GeneratePDF(ActionEvent event) {
         String recognitionType = RecognitionTypeText.getText();
         String description = DescriptionText.getText();
         String InstitutionalMailReceivers = InstitutionalMailReceiversText.getText();
@@ -102,6 +100,7 @@ public class ControllerGenerateConstancy implements Initializable {
                 contenido.setFont(PDType1Font.HELVETICA, 11);
                 contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
                 contenido.showText(recognitionType);
+                contenido.setFont(PDType1Font.COURIER, 11);
                 contenido.newLineAtOffset(00, -20);
                 contenido.showText(description);
                 contenido.newLineAtOffset(00, -20);
@@ -114,7 +113,7 @@ public class ControllerGenerateConstancy implements Initializable {
                 contenido.showText(regulatoryNote);
                 contenido.newLineAtOffset(00, -20);
             }
-            documento.save("C:\\Users\\INNOVA TEC\\Documents\\PDFPrueba\\pdfprueba.pdf");
+            documento.save("C:\\Users\\INNOVA TEC\\Documents\\PDFPrueba\\" + recognitionType + ".pdf");
     
         }catch(IOException x){
             System.out.println("Error: "+x.getMessage());
@@ -131,8 +130,8 @@ public class ControllerGenerateConstancy implements Initializable {
         String InstitutionalMailValidator = InstitutionalMailValidatorText.getText();
         String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
         String regulatoryNote = RegulatoryNoteText.getText();
-        String eventRegistred = "hackaton2021";
-        GeneratePDFOnAction();
+        String eventRegistred = "Hackaton";
+        //GeneratePDF();
         Constancy constancyObject = new Constancy(recognitionType, description, InstitutionalMailReceivers, InstitutionalMailValidator, InstitutionalMailRedPient, regulatoryNote, eventRegistred);
         
         
@@ -145,7 +144,7 @@ public class ControllerGenerateConstancy implements Initializable {
             this.constancyList.add(constancyObject);
             constancyDAO.generateConstancy(constancyObject);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("El Evento ha sido guardado exitosamente");
+            alert.setHeaderText("Se ha generado la constancia");
             alert.setTitle("Confirmacion");
             alert.setContentText(null);
             alert.showAndWait();
@@ -153,7 +152,7 @@ public class ControllerGenerateConstancy implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("El Evento existe");
+            alert.setContentText("La constancia ya se encuentra registrada en la base de datos");
             alert.showAndWait();
         }
         

@@ -88,8 +88,8 @@ public class EventDAO implements IEventDAO{
     }
 
     @Override
-    public Event modifyEvent(Event newEvent, Event lastEvent) {
-        String title = lastEvent.getTittle();
+    public Event modifyEvent(Event newEvent, String tittle) {
+        //String title = tittle;
         String registrationDate = (new SimpleDateFormat("yyyy-MM-dd").format(newEvent.getRegistrationDate()));
         String eventDate = (new SimpleDateFormat("yyyy-MM-dd").format(newEvent.getEventDate()));
         try {
@@ -102,7 +102,7 @@ public class EventDAO implements IEventDAO{
             preparedStatement.setString(5,  eventDate);
             preparedStatement.setString(6, newEvent.getPrivacy());
             preparedStatement.setString(7, newEvent.getResponsable());
-            preparedStatement.setString(8, newEvent.getTittle());
+            preparedStatement.setString(8, tittle);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -53,6 +56,7 @@ public class ControllerScheduleEvent implements Initializable {
     private Button ScheduleButton;
     @FXML
     private Button ExitScheduleButton;
+    
     ObservableList<Event> eventList;
     
     public void closeWindow(ActionEvent event){
@@ -76,6 +80,12 @@ public class ControllerScheduleEvent implements Initializable {
             responsableList.add(memberName);
         }
     }
+    
+    public void getActualDate(){
+        LocalDate actualDate = LocalDate.now();
+        RegistrationDateComboBox1.setValue(actualDate);
+    }
+    
     @FXML
     public void addEventOnAction(ActionEvent event) throws ParseException {
         try{
@@ -154,5 +164,6 @@ public class ControllerScheduleEvent implements Initializable {
         PrivacyComboBox.setItems(privacyList);
         eventList = FXCollections.observableArrayList();
         fillComboBoxWithMember();
+        getActualDate();
     }
 }

@@ -1,4 +1,5 @@
 package domain;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  */
 public class Event {
     private String tittle, responsable, type, place, privacy;
-    private Date registrationDate, eventDate;
+    private Date eventDate, registrationDate;
 
     public Event(String tittle, String type, Date registrationDate, String place, Date eventDate, String privacy, String responsable) {
         this.tittle = tittle;

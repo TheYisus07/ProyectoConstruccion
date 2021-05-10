@@ -31,10 +31,11 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author INNOVA TEC
+ * @author Antonio de Jesús Dominguez García
  */
 public class ControllerConsultEvent implements Initializable {
     private ControllerConsultEventHistory controllerConsultEventHistory;
+    private ControllerConsultEvent controllerConsultEvent;
     
     @FXML
     private Label TitleLabel;
@@ -78,6 +79,7 @@ public class ControllerConsultEvent implements Initializable {
     
     public void getEventTitleSelected(ControllerConsultEventHistory controllerConsultEventHistory, String eventTitle){
         TitleLabel.setText(eventTitle + "");
+        
         EventDAO eventDAO = new EventDAO();
         Event eventConsulted;
         eventConsulted = eventDAO.consultEvent(eventTitle);
@@ -98,6 +100,29 @@ public class ControllerConsultEvent implements Initializable {
         ResponsableLabel.setText(responsable + "");
         this.controllerConsultEventHistory = controllerConsultEventHistory;
         
+    }
+    
+    @FXML
+    void ShowModifyEvenGUIOnAction(ActionEvent event) {
+        try {
+            FXMLLoader fXMLLoader = new FXMLLoader();
+            fXMLLoader.setLocation(getClass().getResource("FXMLModifyEvent.fxml"));
+            fXMLLoader.load();
+            ControllerModifyEvent controllerModifyEvent = fXMLLoader.getController();
+            String eventTitle = TitleLabel.getText();
+            controllerModifyEvent.fillModifyEventDates(controllerConsultEvent, eventTitle);
+            Parent root = fXMLLoader.getRoot();
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML

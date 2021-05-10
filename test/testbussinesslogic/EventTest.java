@@ -72,9 +72,9 @@ public class EventTest {
         Date registrationDate = new Date((2021-1900), (3-1), 27);
         Date eventDate = new Date((2021-1900), (4-1), 03);
         Event eventObjectNew = new Event("evento2", "tipo", registrationDate, "xalapa", eventDate, "si", "Jaime");
-        Event eventObjectOld = new Event("evento3", "evento", registrationDate, "coatepec", eventDate, "No", "Jaime");
+        String TitleOfTheEvent = "evento3";
         String tittleEventExpected = "evento2";
-        eventResult = event.modifyEvent(eventObjectNew,eventObjectOld);
+        eventResult = event.modifyEvent(eventObjectNew,TitleOfTheEvent);
         String eventNew = eventResult.getTittle();
         
         assertEquals("prueba ingresar un cuerpo academico", tittleEventExpected, eventNew);

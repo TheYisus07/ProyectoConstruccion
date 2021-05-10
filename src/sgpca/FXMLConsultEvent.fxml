@@ -33,8 +33,14 @@
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <Button layoutX="572.0" layoutY="27.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="MODIFICAR EVENTO" />
-            <Button fx:id="ExitConsultEventButton" layoutX="6.0" layoutY="547.0" mnemonicParsing="false" onAction="#getOutOfConsultEventOnAction" prefHeight="37.0" prefWidth="103.0" text="SALIR" />
+            <Button fx:id="ModifyEventButton" layoutX="572.0" layoutY="27.0" mnemonicParsing="false" onAction="#ShowModifyEvenGUIOnAction" prefHeight="37.0" prefWidth="171.0" text="MODIFICAR EVENTO">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="ExitConsultEventButton" layoutX="6.0" layoutY="547.0" mnemonicParsing="false" onAction="#getOutOfConsultEventOnAction" prefHeight="37.0" prefWidth="103.0" text="SALIR">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
             <AnchorPane layoutX="472.0" layoutY="520.0" prefHeight="46.0" prefWidth="235.0" style="-fx-background-color: #c9c9c9; -fx-border-color: #ffffff;">
                <children>
                   <Button fx:id="ShowConstancyListGUIButton" layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#ShowConstancyListGUIOnAction" prefHeight="25.0" prefWidth="205.0" style="-fx-background-color: #000000;" text="Ver constancias del evento" textFill="WHITE">
