@@ -71,23 +71,31 @@ public class ControllerConsultEventHistory implements Initializable {
     }
     
     public void showConsultEventGUI(){
-        tableViewEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Event> observable, Event oldEvent, Event newEvent) -> {
-            try {
-                String eventTittle = tableViewEvents.getSelectionModel().getSelectedItem().getTittle();
-                Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultEvent.fxml"));
-                Scene scene = new Scene(root);
-                
-                FXMLLoader fXMLLoader = new FXMLLoader();
-                ControllerConsultEvent controllerConsultEvent = (ControllerConsultEvent) fXMLLoader.getController();
-                System.out.println(eventTittle);
-                controllerConsultEvent.getEventTitleSelected(controllerConsultEventHistory, eventTittle);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        tableViewEvents.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>(){
+            
+            @Override
+            public void changed(ObservableValue<? extends Event> observable, Event oldValue, Event newValue) {
+                try {
+                    Stage stage =  (Stage) tableViewEvents.getScene().getWindow();
+                    
+                    stage.close();
+                    FXMLLoader fXMLLoader = new FXMLLoader();
+                    fXMLLoader.setLocation(getClass().getResource("FXMLConsultEvent.fxml"));
+                    fXMLLoader.load();
+                    ControllerConsultEvent controllerConsultEvent = fXMLLoader.getController();
+                    String eventTitle = observable.getValue().getTittle();
+                    controllerConsultEvent.getEventTitleSelected(controllerConsultEventHistory, eventTitle);
+                    Parent root = fXMLLoader.getRoot();
+                    
+                    Stage stageConsultEvent = new Stage();
+                    Scene scene = new Scene(root);
+                    stageConsultEvent.initStyle(StageStyle.DECORATED);
+                    stageConsultEvent.setScene(scene);
+                    stageConsultEvent.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }            
         });
     }
 
@@ -101,6 +109,7 @@ public class ControllerConsultEventHistory implements Initializable {
             stage.hide();
             stage.setScene(scene);
             stage.show();
+            
         } catch (IOException ex) {
             Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,7 +136,7 @@ public class ControllerConsultEventHistory implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showEventHistory();
-        
+        showConsultEventGUI();
     }    
     
 }

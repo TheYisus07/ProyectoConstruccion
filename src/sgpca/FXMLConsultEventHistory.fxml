@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sgpca.ControllerConsultEventHistory">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.ControllerConsultEventHistory">
    <children>
       <AnchorPane prefHeight="55.0" prefWidth="850.0" style="-fx-background-color: #000000;">
          <children>
@@ -26,7 +25,7 @@
                   <TableView fx:id="tableViewEvents" layoutX="26.0" layoutY="64.0" prefHeight="453.0" prefWidth="545.0">
                     <columns>
                       <TableColumn fx:id="tableColumnEventTypes" prefWidth="109.0" text="Tipo" />
-                      <TableColumn fx:id="tableColumnEventTitles" prefWidth="336.0" text="Tema" />
+                      <TableColumn fx:id="tableColumnEventTitles" prefWidth="336.0" text="Titulo" />
                       <TableColumn fx:id="tableColumnEventDates" prefWidth="99.0" text="Fecha" />
                     </columns>
                   </TableView>

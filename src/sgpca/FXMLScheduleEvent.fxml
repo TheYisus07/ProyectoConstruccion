@@ -31,8 +31,8 @@
                   <TextField fx:id="TitleTXT" layoutX="150.0" layoutY="30.0" prefHeight="25.0" prefWidth="354.0" promptText="Titulo del evento" style="-fx-background-color: #ffffff;" />
                   <TextField fx:id="PlaceTXT" layoutX="149.0" layoutY="194.0" prefHeight="25.0" prefWidth="354.0" promptText="Lugar del evento" style="-fx-background-color: #ffffff;" />
                   <ComboBox fx:id="TypeComboBox" layoutX="150.0" layoutY="109.0" prefHeight="26.0" prefWidth="354.0" promptText="Selecciona un tipo" />
-                  <DatePicker fx:id="EventDateComboBox" layoutX="150.0" layoutY="238.0" prefHeight="26.0" prefWidth="354.0" promptText="Fecha de evento" />
-                  <DatePicker fx:id="RegistrationDateComboBox1" layoutX="148.0" layoutY="148.0" prefHeight="26.0" prefWidth="354.0" promptText="Fecha de registro" />
+                  <DatePicker fx:id="EventDateComboBox" editable="false" layoutX="150.0" layoutY="238.0" prefHeight="26.0" prefWidth="354.0" promptText="Fecha de evento" />
+                  <DatePicker fx:id="RegistrationDateComboBox1" editable="false" layoutX="148.0" layoutY="148.0" prefHeight="26.0" prefWidth="354.0" promptText="Fecha de registro" />
                   <ComboBox fx:id="PrivacyComboBox" layoutX="149.0" layoutY="284.0" prefHeight="26.0" prefWidth="354.0" promptText="selecciona privacidad" />
                   <Button fx:id="ScheduleButton" layoutX="537.0" layoutY="301.0" mnemonicParsing="false" onAction="#addEventOnAction" prefHeight="33.0" prefWidth="108.0" text="Registrar">
                      <font>

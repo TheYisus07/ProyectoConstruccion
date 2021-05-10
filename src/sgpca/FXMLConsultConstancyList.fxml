@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sgpca.ControllerConsultConstancyList">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpca.ControllerConsultConstancyList">
    <children>
       <AnchorPane prefHeight="55.0" prefWidth="850.0" style="-fx-background-color: #000000;">
          <children>
@@ -37,7 +36,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <Button fx:id="GenerateCostancyEvent" layoutX="608.0" layoutY="27.0" mnemonicParsing="false" onAction="#OpenGenerateConstancyGUI" prefHeight="37.0" prefWidth="135.0" text="GENERAR CONSTANCIA" />
+            <Button fx:id="GenerateCostancyEvent" layoutX="572.0" layoutY="27.0" mnemonicParsing="false" onAction="#OpenGenerateConstancyGUI" prefHeight="37.0" prefWidth="171.0" text="GENERAR CONSTANCIA" />
             <Button fx:id="ExitConstancyListButton" layoutX="6.0" layoutY="547.0" mnemonicParsing="false" onAction="#getOutOfConstancyList" prefHeight="37.0" prefWidth="103.0" text="SALIR" />
          </children>
       </AnchorPane>

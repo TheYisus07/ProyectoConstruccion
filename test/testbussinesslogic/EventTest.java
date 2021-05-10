@@ -22,9 +22,7 @@ import org.junit.rules.ExpectedException;
  */
 public class EventTest {
     
-    public EventTest(){
-        
-    }
+   
     
     @Test
     public void testEventByScheduleEvent(){
@@ -59,7 +57,7 @@ public class EventTest {
         
         EventDAO event = new EventDAO();
         Event eventResult;
-        String eventExpected = "evento1";
+        String eventExpected = "Hackaton";
         eventResult = event.consultEvent(eventExpected);
         String eventActual = eventResult.getTittle();
         assertEquals("Prueba obtener evento", eventExpected, eventActual);
