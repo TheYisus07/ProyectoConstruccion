@@ -1,5 +1,5 @@
 
-package sgpca;
+package gui;
 
 import bussinesslogic.ConstancyDAO;
 import bussinesslogic.EventDAO;

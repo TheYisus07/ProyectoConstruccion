@@ -1,4 +1,4 @@
-package sgpca;
+package gui;
 
 import bussinesslogic.EventDAO;
 import bussinesslogic.MemberDAO;
