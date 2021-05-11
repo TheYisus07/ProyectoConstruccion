@@ -2,7 +2,9 @@
 package sgpca;
 
 import bussinesslogic.ConstancyDAO;
+import bussinesslogic.EventDAO;
 import domain.Constancy;
+import domain.Event;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -37,6 +39,8 @@ import javafx.stage.StageStyle;
 public class ControllerConsultConstancyList implements Initializable {
     private final ConstancyDAO constancyDAO = new ConstancyDAO();
     private ControllerConsultConstancyList controllerConsultConstancyList;
+    private Event eventObject;
+    private EventDAO eventDAO;
     
     @FXML
     private TableView<Constancy> TableViewConstancy;
@@ -69,10 +73,15 @@ public class ControllerConsultConstancyList implements Initializable {
         }
     }
     
-    public void showConstancyList() { 
+    public void showConstancyList(String eventTitle) { 
+        eventDAO = new EventDAO();
+        eventObject = eventDAO.consultEvent(eventTitle);
         ObservableList<Constancy> constancyList = FXCollections.observableArrayList();
         for (int i = 0; i < constancyDAO.consultConstancyList().size(); i++) {
-            constancyList.add(constancyDAO.consultConstancyList().get(i));
+            String eventTitleExpected = constancyDAO.consultConstancyList().get(i).getEventTitle();
+            if(eventTitleExpected.equals(eventTitle)){
+                constancyList.add(constancyDAO.consultConstancyList().get(i));
+            } 
         }
         this.tableColumnConstancyTypes.setCellValueFactory(new PropertyValueFactory("RecognitionType"));
         this.tableColumnConstancyNames.setCellValueFactory(new PropertyValueFactory("InstitutionalMailRedpient"));
@@ -80,7 +89,7 @@ public class ControllerConsultConstancyList implements Initializable {
         TableViewConstancy.setItems(constancyList);
    }
     
-    public void showConsultEventGUI(){
+    public void showConsultConstancyGUI(){
         TableViewConstancy.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Constancy>(){
             
             @Override
@@ -112,7 +121,12 @@ public class ControllerConsultConstancyList implements Initializable {
     @FXML
     void OpenGenerateConstancyGUI(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLGenerateConstancy.fxml"));
+            FXMLLoader fXMLLoader = new FXMLLoader();
+            fXMLLoader.setLocation(getClass().getResource("FXMLGenerateConstancy.fxml"));
+            fXMLLoader.load();
+            ControllerGenerateConstancy controllerGenerateConstancy = fXMLLoader.getController();
+            controllerGenerateConstancy.getEventForThisConstancy(eventObject);
+            Parent root = fXMLLoader.getRoot();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             
@@ -142,8 +156,7 @@ public class ControllerConsultConstancyList implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        showConstancyList();
-        showConsultEventGUI();
+        showConsultConstancyGUI();
     }    
     
 }

@@ -79,7 +79,7 @@ public class ControllerConsultEventHistory implements Initializable {
                 try {
                     Stage stage =  (Stage) tableViewEvents.getScene().getWindow();
                     
-                    stage.close();
+                    stage.hide();
                     FXMLLoader fXMLLoader = new FXMLLoader();
                     fXMLLoader.setLocation(getClass().getResource("FXMLConsultEvent.fxml"));
                     fXMLLoader.load();
@@ -90,7 +90,6 @@ public class ControllerConsultEventHistory implements Initializable {
                     
                     Stage stageConsultEvent = new Stage();
                     Scene scene = new Scene(root);
-                    stageConsultEvent.initStyle(StageStyle.DECORATED);
                     stageConsultEvent.setScene(scene);
                     stageConsultEvent.show();
                 } catch (IOException ex) {

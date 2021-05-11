@@ -11,7 +11,9 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import bussinesslogic.ConstancyDAO;
+import bussinesslogic.EventDAO;
 import domain.Constancy;
+import domain.Event;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -41,6 +43,7 @@ import javafx.stage.Stage;
  */
 public class ControllerGenerateConstancy implements Initializable {
     private final ConstancyDAO constancyDAO = new ConstancyDAO();
+    private Event eventObject;
     
     @FXML
     private TextField RecognitionTypeText;
@@ -80,6 +83,11 @@ public class ControllerGenerateConstancy implements Initializable {
             Logger.getLogger(ControllerConsultEventHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
+   public void getEventForThisConstancy(Event event){
+       eventObject = event;
+       
+   }
     
    @FXML
     void GeneratePDF(ActionEvent event) {
@@ -89,7 +97,8 @@ public class ControllerGenerateConstancy implements Initializable {
         String InstitutionalMailValidator = InstitutionalMailValidatorText.getText();
         String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
         String regulatoryNote = RegulatoryNoteText.getText();
-        String eventRegistred = "hackaton2021";
+        
+        String eventRegistred = "Hackaton ";
         
          try{
             PDDocument documento = new PDDocument();
@@ -114,7 +123,6 @@ public class ControllerGenerateConstancy implements Initializable {
                 contenido.newLineAtOffset(00, -20);
             }
             documento.save("C:\\Users\\INNOVA TEC\\Documents\\PDFPrueba\\" + recognitionType + ".pdf");
-    
         }catch(IOException x){
             System.out.println("Error: "+x.getMessage());
         } 
@@ -124,37 +132,46 @@ public class ControllerGenerateConstancy implements Initializable {
 
     @FXML
     void addConstancyOnAction(ActionEvent event) {
-        String recognitionType = RecognitionTypeText.getText();
-        String description = DescriptionText.getText();
-        String InstitutionalMailReceivers = InstitutionalMailReceiversText.getText();
-        String InstitutionalMailValidator = InstitutionalMailValidatorText.getText();
-        String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
-        String regulatoryNote = RegulatoryNoteText.getText();
-        String eventRegistred = "Hackaton";
-        //GeneratePDF();
-        Constancy constancyObject = new Constancy(recognitionType, description, InstitutionalMailReceivers, InstitutionalMailValidator, InstitutionalMailRedPient, regulatoryNote, eventRegistred);
-        
-        
-        ConstancyDAO constancyAUX = new ConstancyDAO();
-        Constancy constancyConsult;
-        constancyConsult = constancyAUX.checkConstancy(recognitionType);        
-        String titleEventConsulted;
-        titleEventConsulted = constancyConsult.getRecognitionType();
-        if(!recognitionType.equals(titleEventConsulted)){
-            this.constancyList.add(constancyObject);
-            constancyDAO.generateConstancy(constancyObject);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Se ha generado la constancia");
-            alert.setTitle("Confirmacion");
-            alert.setContentText(null);
-            alert.showAndWait();
+        try{
+            String recognitionType = RecognitionTypeText.getText();
+            String description = DescriptionText.getText();
+            String InstitutionalMailReceivers = InstitutionalMailReceiversText.getText();
+            String InstitutionalMailValidator = InstitutionalMailValidatorText.getText();
+            String InstitutionalMailRedPient = InstitutionalMailRedPientText.getText();
+            String regulatoryNote = RegulatoryNoteText.getText();
+            System.out.println(eventObject);
+            String eventRegistred = eventObject.getTittle();
+            //GeneratePDF();
+            Constancy constancyObject = new Constancy(recognitionType, description, InstitutionalMailReceivers, InstitutionalMailValidator, InstitutionalMailRedPient, regulatoryNote, eventRegistred);
+            ConstancyDAO constancyAUX = new ConstancyDAO();
+            Constancy constancyConsult;
+            constancyConsult = constancyAUX.checkConstancy(recognitionType);        
+            String titleEventConsulted;
+            titleEventConsulted = constancyConsult.getRecognitionType();
+            if(!recognitionType.equals(titleEventConsulted)){
+                this.constancyList.add(constancyObject);
+                constancyDAO.generateConstancy(constancyObject);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Se ha generado la constancia");
+                alert.setTitle("Confirmacion");
+                alert.setContentText(null);
+                alert.showAndWait();
             }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("La constancia ya se encuentra registrada en la base de datos");
+                alert.showAndWait();
+            }
+        }catch(NullPointerException nullPointerException){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("La constancia ya se encuentra registrada en la base de datos");
+            alert.setContentText("Valores nulos, verifique los campos");
             alert.showAndWait();
+            Logger.getLogger(ControllerScheduleEvent.class.getName()).log(Level.SEVERE, null, nullPointerException);
         }
+        
         
     }
     

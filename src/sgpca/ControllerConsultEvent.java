@@ -128,7 +128,13 @@ public class ControllerConsultEvent implements Initializable {
     @FXML
     void ShowConstancyListGUIOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultConstancyList.fxml"));
+            FXMLLoader fXMLLoader = new FXMLLoader();
+            fXMLLoader.setLocation(getClass().getResource("FXMLConsultConstancyList.fxml"));
+            fXMLLoader.load();
+            String eventTitle = TitleLabel.getText();
+            ControllerConsultConstancyList controllerConsultConstancyList = fXMLLoader.getController();
+            controllerConsultConstancyList.showConstancyList(eventTitle);
+            Parent root = fXMLLoader.getRoot();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             

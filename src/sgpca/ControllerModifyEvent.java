@@ -74,7 +74,7 @@ public class ControllerModifyEvent implements Initializable {
     
     public void closeWindow(ActionEvent event){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLConsultEventHistory.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.hide();
@@ -142,7 +142,7 @@ public class ControllerModifyEvent implements Initializable {
             String textTypeComboBox = TypeComboBox.getSelectionModel().getSelectedItem();
             String textPrivacyComboBox = PrivacyComboBox.getSelectionModel().getSelectedItem();
             Event eventObject = new Event(title, textTypeComboBox, registrationDate, place, eventDate, textPrivacyComboBox, textResponsableComboBox);
-            //eventDAO.modifyEvent(eventObject,titleOfTheOldEvent);
+             eventDAO.modifyEvent(eventObject,titleOfTheOldEvent);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("El Evento ha sido guardado exitosamente");
             alert.setTitle("Confirmacion");
